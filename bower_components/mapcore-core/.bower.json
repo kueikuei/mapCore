@@ -1,0 +1,14 @@
+{
+  "name": "mapcore-core",
+  "version": "2.3.0",
+  "_release": "2.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.3.0",
+    "commit": "868e9e60a5564380562050edb3ff57a711231df7"
+  },
+  "_source": "http://192.168.0.51/bower/mapcore-core.git",
+  "_target": "^2.3.0",
+  "_originalSource": "http://192.168.0.51/bower/mapcore-core.git",
+  "_direct": true
+}
