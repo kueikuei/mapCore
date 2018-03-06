@@ -2,28 +2,41 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>DEMO</title>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
+    <title>Demo</title>
     <style>
       * {margin:0; padding:0}
       html, body {width:100%; height:100%;}
       button, input {font-size:14px; height:4.5%;}
-      #map {width:100%; height:95%;}
+      #mapID {width:100%; height:95%;}
     </style>
+    <script src="http://192.168.0.51/MapCores/gitbook/raw/v2.3.0/config/esri-config-v23.js"></script>
+    <script src="http://192.168.0.51/MapCores/gitbook/raw/v2.3.0/config/esri-demo.js"></script>
+    <!-- 以上可依需求調整-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
     <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="http://192.168.0.51/bower/mapcore-bundle/raw/v2.2.0/mapLoader.js"></script>
-    <script src="http://192.168.0.51/bower/mapcore-bundle/raw/v2.2.0/esri-config.js"></script>
-    <script src="http://192.168.0.51/bower/mapcore-bundle/raw/v2.2.0/esri-demo.js"></script>
+    <script src="http://192.168.0.51/bower/mapcore-core/raw/v2.3.0/mapCore.js"></script>
   </head>
   <body>
-    <div id="map"></div>
+    <div id="mapID"></div>
+    <button id="setExtent">setExtent</button>
+    <button id="getExtent">getExtent</button>
     <script>
-      mapLoader(loadConfig, function(mapCore){
-        
-        mapCore('map', mapConfig).then(function(map){
-          
-          // your map code
-          
+      mapCore.loader(loadConfig, function(addMap){
+        addMap('mapID', mapConfig).then(function(map){
+          $('#setExtent').click(function () {
+            //map.setExtent({ xmin: 298534, ymin: 2765246, xmax: 299804, ymax: 2765868 }, "3826"); //extent, spatialReference(可不傳如下行 or 傳入代碼即可)
+            if (loadConfig .type==="google"){
+               map.setExtent({xmin:121.48848072998044, ymin:25.00698922456296, xmax:121.54641644470212, ymax:25.052173757362954});
+            }
+            else{
+               map.setExtent({ xmin: 298534, ymin: 2765246, xmax: 299804, ymax: 2765868 });
+            }
+          });
+      
+          $('#getExtent').click(function() {
+            var extent = map.getExtent();
+            alert(extent.xmin + "," + extent.ymin + ',' + extent.xmax + ',' + extent.ymax);
+          });
         });
       });
     </script>
